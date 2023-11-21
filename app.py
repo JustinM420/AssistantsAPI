@@ -5,9 +5,10 @@ from bs4 import BeautifulSoup
 import requests
 import pdfkit
 import time
+import dotenv
 
 # Set your OpenAI Assistant ID here
-assistant_id = 'asst_Enter your assistant ID here'
+assistant_id = 'asst_RIVktBS8uY5TwRPczT6rS4Xt'
 
 # Initialize the OpenAI client (ensure to set your API key in the sidebar within the app)
 client = openai
@@ -23,7 +24,7 @@ if "thread_id" not in st.session_state:
     st.session_state.thread_id = None
 
 # Set up the Streamlit page with a title and icon
-st.set_page_config(page_title="ChatGPT-like Chat App", page_icon=":speech_balloon:")
+st.set_page_config(page_title="MCB AI Assistant Chat App", page_icon=":speech_balloon:")
 
 # Define functions for scraping, converting text to PDF, and uploading to OpenAI
 def scrape_website(url):
@@ -49,7 +50,7 @@ def upload_to_openai(filepath):
 st.sidebar.header("Configuration")
 api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
 if api_key:
-    openai.api_key = api_key
+    openai.api_key = dotenv.OPENAI_API_KEY
 
 # Additional features in the sidebar for web scraping and file uploading
 st.sidebar.header("Additional Features")
